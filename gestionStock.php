@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="estilos.css">
+        <script src="scripts.js"></script>
+    </head>
+
+    <body>
+        <header id="cabezera">
+            <h1>Distribuidoras Refresh</h1>
+            <img src="imagenes/truck.png" alt="camión"/>
+        </header>
+        <nav id="navegador">
+            <ul>
+                <li><a href = 'PagAdmin.php'>Ver Usuarios</a></li>
+                <li><a href="CrearUsuario.php" > Crear usuario</a></li>
+                <li><a href = 'gestionStock.php' class="active">Gestión de stock</a></li>
+                <li><a href = 'verPedidos.php'>Ver pedidos</a></li>
+                <li><a href = 'cerrarSesion.php' >Cerrar Sesion</a></li>
+            </ul>
+        </nav>
+        <section>
+
+        
+        </section>
+    </body>
+</html>

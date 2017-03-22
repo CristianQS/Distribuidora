@@ -1,0 +1,148 @@
+@media screen{
+    
+    body{
+        background-color:#A4A4A4;
+        color:black;
+        font-family: Arial, sans-serif;
+        font-style:italic;
+        font-size:large;    
+    }
+    #cabezera {
+        background-color: #E0F2F7; 
+        text-align: center;
+        font-style: italic; 
+        border-style: double;
+        border-color: black;
+        width: 600px;
+        margin-left:90px
+    }
+
+    #navegador ul {
+      margin:50px;
+      list-style: none;
+      overflow: hidden; 
+    }
+
+    #navegador li {
+      background-color:black;
+      float: left;
+      font-size: 16px;
+      border-left-style: solid;
+      border-color: white;
+    }
+    
+    .active {
+      font-weight: bold;
+    }
+
+    #navegador li a{
+      display: block; 
+      padding: 20px;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    #navegador ul li:hover {
+      background: #3ead47;
+    }
+
+    .cuerpo{
+        border-color: black;
+        border-style: double;
+        background-color: #E0F2F7; 
+        text-align: center;
+        width: 1000px;
+        margin:90px;
+        font-size: 20px;
+        
+    }
+    
+    .cuerpoProductos{
+        border-color: black;
+        border-style: double;
+        background-color: #E0F2F7; 
+        width: 1100px;
+        padding: 60px;
+        margin:90px;
+        overflow: hidden;
+        font-size: 20px;
+    }
+
+    .cuerpoProductos img{
+        float: left;
+    }
+
+    .cuerpoProductos ul{
+        float:left;
+    }
+
+    .Inicio_h2{
+      border-style: groove;
+      border-color: black;
+      background-color:#58FAAC;  
+      width: 500px;
+      margin-left: 250px;
+      font-size: 25px; 
+    }
+    
+    #Tabla_h2{
+      border-style: groove;
+      border-color: black;
+      background-color:#58FAAC;  
+      width: 500px;
+      margin-left: 145px;
+      font-size: 25px; 
+    }
+
+    table{
+        margin-left: 145px;
+        border-color: black;
+        border-style: solid;
+
+    }
+
+    th,td{
+        background-color: #E0F2F7;
+    }
+    table a{
+        text-align:left;
+        color: black;
+        
+    }
+
+    table a:hover{
+        color: blue;
+        text-decoration: none;
+    }
+}
+
+@media print{
+    nav,ul{
+        text-align:left;
+    }
+    body{
+        color:black;
+        font-family: Arial, sans-serif;
+        font-style:italic;
+        font-size:22px; 
+        text-align:center;
+        margin: 10px
+    } 
+    
+    table{
+        margin-left: 145px;
+        border-color: black;
+        border-style: solid;
+
+    }
+    
+    table a{
+        text-align:left;
+        color: black;
+        text-decoration: none;
+    }
+    th,td{
+        border-color: black;
+        border-style: solid;
+    }
+}

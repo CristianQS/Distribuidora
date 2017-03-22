@@ -1,4 +1,3 @@
-
 <?php //Etiqueta de inicio, se asume que no hay nada alfinal, no se recomienda poner '>'
 //Noe es sensible a mayus y minus
 //script son una mezcla de html y php

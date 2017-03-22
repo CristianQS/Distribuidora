@@ -43,10 +43,9 @@ echo "<!DOCTYPE html>
         <form action=\"RealizaModificacion.php\" method = \"get\">
             <label>Usuario: $usuario</label><input type='hidden' name = 'nombreUser' value='$usuario' id = 'nombreUser' size = 20><br>
             <label>Nombre Completo:</label><input type='text' name = 'nombreCom' value='$nomC' id = 'nombreCom' size = 20><br>
-            Elija un tipo:<br>
-            <input type='radio' name = 'tipo' value ='1'id = 'tipo'>Administrador<br>
-            <input type='radio' name = 'tipo' value ='2' id = 'tipo'>Cliente<br>
-            <input type='radio' name = 'tipo' value ='3' id = 'tipo'>Repartidor<br>
+            Elija un tipo:<br>";
+            User::formu($type);
+            echo" 
             <label>Población:</label><input type='text'  name = 'pobla' value='$poblacion' id = 'pobla' size = 20><br>
             <label>Dirección:</label><input type='text'  name = 'dir' value='$direccion' id = 'dir' size = 20><br>
             <input type='submit' value = 'Enviar' name = 'Enviar' id = 'Enviar'><br>

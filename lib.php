@@ -95,7 +95,6 @@ class View{
         }
     }
 }
-
 class DB{
     private static $connection=null;
     public static function get(){
@@ -122,6 +121,30 @@ class DB{
     }
 }
 class User{
+    public static function formu ($type){
+        switch ($type){
+            case 1:
+                echo "
+            <input type='radio' checked =\"checked\" name = 'tipo' value ='1'id = 'tipo'>Administrador<br>
+            <input type='radio' name = 'tipo' value ='2' id = 'tipo'>Cliente<br>
+            <input type='radio' name = 'tipo' value ='3' id = 'tipo'>Repartidor<br>";
+                break;
+            case 2:
+                echo " 
+            <input type='radio' name = 'tipo' value ='1'id = 'tipo'>Administrador<br>
+            <input type='radio' checked =\"checked\"name = 'tipo' value ='2' id = 'tipo'>Cliente<br>
+            <input type='radio' name = 'tipo' value ='3' id = 'tipo'>Repartidor<br>";
+                break;
+            case 3:
+                echo" 
+                        <input type='radio' name = 'tipo' value ='1'id = 'tipo'>Administrador<br>
+            <input type='radio' name = 'tipo' value ='2' id = 'tipo'>Cliente<br>
+            <input type='radio' checked =\"checked\" name = 'tipo' value ='3' id = 'tipo'>Repartidor<br>";
+                break;
+            
+        }
+    }
+
     public static function session_start(){
         if(session_status () === PHP_SESSION_NONE){
             session_start();
@@ -185,7 +208,6 @@ class User{
     }
     
 }
-
 class Pedido{
         public static  function estadoPedido($id){
         $array = self::detallesPedido($id);
@@ -193,11 +215,10 @@ class Pedido{
         $horaAsignacion = $array[0]['horaasignacion'];
         $horaReparto = $array[0]['horareparto'];
         $horaEntrega = $array[0]['horaentrega'];
-
         if($horaCreacion == 0){
             return "No creado";
         }
-        if($horaCreacion == 0){
+        if($horaCreacion != 0){
             return "En proceso";
         }
         if($horaCreacion != 0 && $horaAsignacion ==0){
@@ -224,5 +245,3 @@ class Pedido{
         return $res;
     }   
 }
-
-

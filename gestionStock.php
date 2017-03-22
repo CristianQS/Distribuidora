@@ -21,8 +21,49 @@
             </ul>
         </nav>
         <section>
-
-        
+            <?php
+            include_once './lib.php';
+$db = new PDO("sqlite:./datos.db");
+        $db->exec('PRAGMA foreign_keys = ON;'); //Activa la integridad referencial para esta conexión
+        $res=$db->prepare("SELECT * FROM 'bebidas';");//prepare da un objeto.Llamamos a un metodo del objeto
+        $res->execute(); //almacena la respuesta
+        //Ejemplo de lectura de tabla
+        if($res){
+            $res->setFetchMode(PDO::FETCH_NAMED);
+            $first=true;
+            echo "<form action=\"actualizarStock.php\" method=\"POST\">";
+            /**Vamos sacando fila a fila, contiene los campos de esa fila*/
+            foreach($res as $game){ //Un array
+                if($first){
+                    echo "<table><tr>"; //Esto va a la pagina de html,
+                    //Sacamos los campos
+                    foreach($game as $field=>$value){ //Sacamos clave=> valor
+                        echo "<th>$field</th>";
+                    }
+                    $first = false;
+                    echo "</tr>";
+                }
+                echo "<tr>";
+                $pos = 0;
+                $nameMarca;
+                foreach($game as $value){
+                    if($pos == 1){$nameMarca=$value;}
+                    if ($pos == 2){
+                        echo "<td><input type='text'  name = '$nameMarca' value='$value' id = '$nameMarca' ></td>";
+                    }else{
+                        echo "<td>$value</td>";
+                    }
+                    $pos+=1;
+                }
+                
+                echo "</tr>";
+            }
+            echo '</table>';
+            echo "<input type='submit' value = 'Enviar' name = 'Enviar' id = 'Enviar'><br>";
+            echo "</form>";
+        }
+        ?>
+          
         </section>
     </body>
 </html>

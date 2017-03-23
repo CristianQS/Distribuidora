@@ -1,12 +1,16 @@
 <?php
 include_once 'lib.php';
-
 $db = new PDO("sqlite:./datos.db");
 $db->exec('PRAGMA foreign_keys = ON;');
-
+$stock = $_POST['cantidad'];
+$marca = $_POST['nameMarca'];
 $sql = "UPDATE bebidas SET stock=? WHERE marca = ?"; 
 $res=$db-> prepare($sql);
-$res->execute(array($_POST[$nameMarca]));  
-View::showTable("usuarios");
-header('Location: PagAdmin.php' );
+for ($i=0;$i<count($stock);$i++){
+    echo "$stock[$i]<br>";
+    echo "$marca[$i]<br>";
+    $res->execute(array($stock[$i],$marca[$i]));  
+    
+}
+header('Location: gestionStock.php' );
 

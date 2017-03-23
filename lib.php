@@ -218,9 +218,7 @@ class Pedido{
         if($horaCreacion == 0){
             return "No creado";
         }
-        if($horaCreacion != 0){
-            return "En proceso";
-        }
+
         if($horaCreacion != 0 && $horaAsignacion ==0){
             return "Creado";
         }

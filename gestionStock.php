@@ -23,7 +23,7 @@
         <section>
             <?php
             include_once './lib.php';
-$db = new PDO("sqlite:./datos.db");
+        $db = new PDO("sqlite:./datos.db");
         $db->exec('PRAGMA foreign_keys = ON;'); //Activa la integridad referencial para esta conexión
         $res=$db->prepare("SELECT * FROM 'bebidas';");//prepare da un objeto.Llamamos a un metodo del objeto
         $res->execute(); //almacena la respuesta
@@ -45,11 +45,11 @@ $db = new PDO("sqlite:./datos.db");
                 }
                 echo "<tr>";
                 $pos = 0;
-                $nameMarca;
                 foreach($game as $value){
                     if($pos == 1){$nameMarca=$value;}
                     if ($pos == 2){
-                        echo "<td><input type='text'  name = '$nameMarca' value='$value' id = '$nameMarca' ></td>";
+                        echo "<td><input type='text'  name = \"cantidad[]\" value='$value' id = 'cantidad' ></td>";
+                        echo "<input type='hidden'  name = \"nameMarca[]\" value='$nameMarca' id = 'nameMarca' >";
                     }else{
                         echo "<td>$value</td>";
                     }

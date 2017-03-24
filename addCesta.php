@@ -4,7 +4,7 @@ include_once "lib.php";
 $db = new PDO("sqlite:./datos.db");
 $db->exec('PRAGMA foreign_keys = ON;');
 #
-if($_GET['Población'] !=NULL && $_GET['Dirección']!=NULL ){
+if($_GET['Población'] !=NULL && $_GET['Dirección']!=NULL && $_GET['cantidad']!=NULL ){
     $consulta=Pedido::existePedido($_GET['Población'], $_GET['Dirección']);
     if($consulta == false){
         $array = User::getLoggedUser();

@@ -21,7 +21,7 @@
             </ul>
         </nav>
         <section>
-            <h1>Tabla Prductos</h1>
+            <h1>Tabla Productos</h1>
             <?php
             include_once 'lib.php';
             $db = new PDO("sqlite:./datos.db");

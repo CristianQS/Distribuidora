@@ -7,8 +7,6 @@ $marca = $_POST['nameMarca'];
 $sql = "UPDATE bebidas SET stock=? WHERE marca = ?"; 
 $res=$db-> prepare($sql);
 for ($i=0;$i<count($stock);$i++){
-    echo "$stock[$i]<br>";
-    echo "$marca[$i]<br>";
     $res->execute(array($stock[$i],$marca[$i]));  
     
 }

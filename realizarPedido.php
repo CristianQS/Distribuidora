@@ -3,7 +3,7 @@ session_start();
 include_once 'lib.php';
 $db = new PDO("sqlite:./datos.db");
 $db->exec('PRAGMA foreign_keys = ON;');
-echo $_SESSION['idpedido'] ;
+if(isset($_SESSION['idpedido'])){
 $consulta=Pedido::estadoPedido($_SESSION['idpedido'] )  ; 
 if($consulta =="En proceso" ){  
     $sql = "SELECT * FROM lineaspedido WHERE idpedido = ?";
@@ -20,17 +20,9 @@ if($consulta =="En proceso" ){
     $sql1 = "UPDATE pedidos SET horacreacion= ?,PVP=? WHERE id=?";
     $res1=$db-> prepare($sql1);
     $res1->execute(array($horaCreada,$total,$_SESSION['idpedido'] ));
+    $_SESSION['idpedido']=0;
 }
 
+}
 
-
-    #$pvp = $c[0]['PVP'];
-    #$stock = $c[0]['stock'];
-    #$unidades = $_GET['cantidad'];
-    #if($unidades > $stock) $unidades = $stock;
-   # $pvc = $unidades * $pvp;
-    #$sql = "INSERT INTO pedidos (idcliente, horacreacion,poblacionentrega, direccionentrega, PVP)"
-   #                ." VALUES (?,?, ?, ?, ?)";
-    #$res=$db-> prepare($sql);
-    #$res->execute(array($us,$horaCreada,$_GET['Población'], $_GET['Dirección'], $pvc));
-#header('Location: PaginaCliente.php');
+header('Location: PaginaCliente.php');

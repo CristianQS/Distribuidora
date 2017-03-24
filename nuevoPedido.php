@@ -44,7 +44,41 @@
         <?php
         session_start();
         include_once './lib.php';
-        View::showTable("lineaspedido");
+        $db = new PDO("sqlite:./datos.db");
+        $db->exec('PRAGMA foreign_keys = ON;'); //Activa la integridad referencial para esta conexión
+        $idp=$_SESSION['idpedido'];
+        $res=$db->prepare("SELECT * FROM lineaspedido WHERE idpedido=? ;");//prepare da un objeto.Llamamos a un metodo del objeto
+        $res->execute(array($idp)); //almacena la respuesta
+        //Ejemplo de lectura de tabla
+        if($res){
+            $res->setFetchMode(PDO::FETCH_NAMED);
+            $first=true;
+            /**Vamos sacando fila a fila, contiene los campos de esa fila*/
+            foreach($res as $game){ //Un array
+                if($first){
+                    echo "<table><tr>"; //Esto va a la pagina de html,
+                    //Sacamos los campos
+                    foreach($game as $field=>$value){ //Sacamos clave=> valor
+                        echo "<th>$field</th>";
+                    }
+                    $first = false;
+                    echo '<th>Borrar</th>';
+                    echo "</tr>";
+                }
+                echo "<tr>";
+                $pos = 0;
+                foreach($game as $value){
+                    echo "<th>$value</th>";
+                    if($pos == 0){
+                        $aux = $value;
+                    }
+                    $pos+=1;
+                }
+                echo "<td><form action='deletePedido.php' method='get'><input type='submit' value = 'Borrar' name = 'borrar'><input type='hidden' name = 'linea' value = '$aux'></form></td> ";
+                echo "</tr>";
+            }
+            echo '</table>';
+        }
         ?>
     </body>
     

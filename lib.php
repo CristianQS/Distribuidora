@@ -137,7 +137,7 @@ class User{
                 break;
             case 3:
                 echo" 
-                        <input type='radio' name = 'tipo' value ='1'id = 'tipo'>Administrador<br>
+            <input type='radio' name = 'tipo' value ='1'id = 'tipo'>Administrador<br>
             <input type='radio' name = 'tipo' value ='2' id = 'tipo'>Cliente<br>
             <input type='radio' checked =\"checked\" name = 'tipo' value ='3' id = 'tipo'>Repartidor<br>";
                 break;

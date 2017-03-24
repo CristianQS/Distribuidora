@@ -216,11 +216,11 @@ class Pedido{
         $horaReparto = $array[0]['horareparto'];
         $horaEntrega = $array[0]['horaentrega'];
         if($horaCreacion == 0){
-            return "No creado";
+            return "En proceso";
         }
 
         if($horaCreacion != 0 && $horaAsignacion ==0){
-            return "Creado";
+            return "No asignado";
         }
         if($horaAsignacion != 0 && $horaReparto == 0){
             return "Asignado";
@@ -241,5 +241,40 @@ class Pedido{
         $inst->setFetchMode(PDO::FETCH_NAMED);
         $res= $inst->fetchAll();
         return $res;
-    }   
+    }
+    public static function detallesPed($poblacion, $direccion){
+        $db = new PDO("sqlite:./datos.db");
+        $db->exec('PRAGMA foreign_keys = ON;'); 
+        $consulta=$db-> prepare("SELECT * FROM pedidos WHERE poblacionentrega=? and direccionentrega=? ");
+        $consulta->execute(array($poblacion, $direccion));
+        $consulta->setFetchMode(PDO::FETCH_NAMED);
+        $result=$consulta->fetchAll();
+        return $result;
+    }
+    public static function existePedido($poblacion, $direccion){
+        $db = new PDO("sqlite:./datos.db");
+        $db->exec('PRAGMA foreign_keys = ON;'); 
+        $consulta=$db-> prepare("SELECT * FROM pedidos WHERE poblacionentrega=? and direccionentrega=? ");
+        $consulta->execute(array($poblacion, $direccion));
+        $consulta->setFetchMode(PDO::FETCH_NAMED);
+        $result=$consulta->fetchAll();
+        if(count($result)==1){
+            return true;
+        }
+        return false;
+    }
+}
+
+class Bebida{
+    
+    public static function detallesBebida($marca){
+        $db = new PDO("sqlite:./datos.db");
+        $db->exec('PRAGMA foreign_keys = ON;'); 
+        $sql = "SELECT * from bebidas WHERE marca = ?; ";
+        $inst=$db->prepare($sql);
+        $inst->execute(array($marca));
+        $inst->setFetchMode(PDO::FETCH_NAMED);
+        $res= $inst->fetchAll();
+        return $res;
+    }
 }

@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once 'lib.php';
 $db = new PDO("sqlite:./datos.db");
 $db->exec('PRAGMA foreign_keys = ON;');
@@ -10,5 +11,6 @@ for ($i=0;$i<count($stock);$i++){
     $res->execute(array($stock[$i],$marca[$i]));  
     
 }
+$_SESSION['updated']="1";
 header('Location: gestionStock.php' );
 

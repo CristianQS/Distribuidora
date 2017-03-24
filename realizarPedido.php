@@ -20,7 +20,10 @@ if($consulta =="En proceso" ){
     $sql1 = "UPDATE pedidos SET horacreacion= ?,PVP=? WHERE id=?";
     $res1=$db-> prepare($sql1);
     $res1->execute(array($horaCreada,$total,$_SESSION['idpedido'] ));
-    $_SESSION['idpedido']=0;
+    unset($_SESSION['idpedido']);
+    unset($_SESSION['pedidoEnCreacion']);
+    unset($_SESSION['dirección']);
+    unset($_SESSION['población']);
 }
 
 }

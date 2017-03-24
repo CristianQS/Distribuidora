@@ -30,7 +30,6 @@
         $res->execute(); //almacena la respuesta
         //Ejemplo de lectura de tabla
         if($res){
-            echo '<h2>Lista de Bebidas</h2>';
             $res->setFetchMode(PDO::FETCH_NAMED);
             $first=true;
             /**Vamos sacando fila a fila, contiene los campos de esa fila*/
@@ -48,9 +47,19 @@
                 echo "<tr>";
                 $pos = 0;
                 foreach($game as $value){
-                    echo "<th>$value</th>";
                     if($pos == 0){
                         $aux = $value;
+                    }
+                    if($pos == 4 || $pos == 6 || $pos == 7 || $pos == 8){
+                        if($value==0){
+                            echo"<td></td>";
+                        }else{
+                            date_default_timezone_set("Europe/London");
+                            $fecha=date("d-m-Y h:i:sa", $value);
+                            echo "<td>$fecha</td>";
+                        }
+                    }else{
+                        echo "<td>$value</td>";
                     }
                     $pos+=1;
                 }

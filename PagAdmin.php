@@ -10,6 +10,21 @@
             <h1>Distribuidoras Refresh</h1>
             <img src="imagenes/truck.png" alt="camión"/>
         </header>
+        <?php
+        session_start();
+        include_once './lib.php';
+        $user=User::userType();
+        if($user != 1){
+            echo "Permiso Denegado";
+            if($user == 2){
+                echo"<a href=\"PaginaCliente.php\">Volver a pagina de inicio</a>";
+            }else{
+                echo"<a href=\"PagRepartidor.php\">Volver a pagina de inicio</a>";
+            }
+            
+           
+        } else{
+            ?>
         <nav id="navegador">
             <ul>
                 <li><a href = 'PagAdmin.php' class="active">Ver Usuarios</a></li>  
@@ -26,6 +41,8 @@
         $db = new PDO("sqlite:./datos.db");
         $db->exec('PRAGMA foreign_keys = ON;');
         View:: alteraTabla('usuarios');
+        }
+        
         ?>
         </section>
     </body>

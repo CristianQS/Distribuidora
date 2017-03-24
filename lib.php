@@ -251,7 +251,7 @@ class Pedido{
         $result=$consulta->fetchAll();
         return $result;
     }
-    public static function existePedido($poblacion, $direccion){
+   /* public static function existePedido($poblacion, $direccion){
         $db = new PDO("sqlite:./datos.db");
         $db->exec('PRAGMA foreign_keys = ON;'); 
         $consulta=$db-> prepare("SELECT * FROM pedidos WHERE poblacionentrega=? and direccionentrega=? ");
@@ -262,7 +262,7 @@ class Pedido{
             return true;
         }
         return false;
-    }
+    }*/
 }
 
 class Bebida{

@@ -144,6 +144,23 @@ class User{
             
         }
     }
+    
+    public static function securityUser($type){
+        switch ($type){
+            case 1:
+                echo"<a href=\"PagAdmin.php\">Volver a pagina de inicio</a>";
+                break;
+            case 2:
+                echo"<a href=\"PaginaCliente.php\">Volver a pagina de inicio</a>";
+                break;
+            case 3:
+                echo"<a href=\"PagRepartidor.php\">Volver a pagina de inicio</a>";
+                break;
+            default :
+                echo"<a href=\"index.php\">Inicio</a>";
+                break;
+        }     
+    }
 
     public static function session_start(){
         if(session_status () === PHP_SESSION_NONE){

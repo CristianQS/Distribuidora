@@ -11,6 +11,15 @@
             <h1>Distribuidoras Refresh</h1>
             <img src="imagenes/truck.png" alt="camión"/>
         </header>
+        <?php
+        session_start();
+        include_once './lib.php';
+        $user=User::userType();
+        if($user != 1){
+            echo "Permiso Denegado";
+            User::securityUser($user);
+        } else{
+        ?>
         <nav id="navegador">
             <ul>
                 <li><a href = 'PagAdmin.php'>Ver Usuarios</a></li>
@@ -22,7 +31,6 @@
         </nav>
         <section>
             <?php
-            session_start();
             include_once './lib.php';
         $db = new PDO("sqlite:./datos.db");
         $db->exec('PRAGMA foreign_keys = ON;'); //Activa la integridad referencial para esta conexión
@@ -69,6 +77,7 @@
                echo "Se ha actualizado la información" ;
                unset($_SESSION['updated']);
             }
+        }
         ?>
           
         </section>

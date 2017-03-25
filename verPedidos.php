@@ -10,6 +10,15 @@
             <h1>Distribuidoras Refresh</h1>
             <img src="imagenes/truck.png" alt="camión"/>
         </header>
+        <?php
+        session_start();
+        include_once './lib.php';
+        $user=User::userType();
+        if($user != 1){
+            echo "Permiso Denegado";
+            User::securityUser($user);
+        } else{
+        ?>
         <nav id="navegador">
             <ul>
                 <li><a href = 'PagAdmin.php' class="active">Ver Usuarios</a></li>  
@@ -65,6 +74,7 @@
                 echo "</tr>";
             }
             echo '</table>';
+        }
         }
         ?>
         </section>

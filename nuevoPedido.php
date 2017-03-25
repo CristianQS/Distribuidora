@@ -10,6 +10,15 @@
             <h1>Distribuidoras Refresh</h1>
             <img src="imagenes/truck.png" alt="camión"/>
         </header>
+        <?php
+        session_start();
+        include_once './lib.php';
+        $user=User::userType();
+        if($user != 2){
+            echo "Permiso Denegado";
+            User::securityUser($user);
+        } else{
+        ?>
         <nav id="navegador">
             <ul>
                 <li><a href = 'PaginaCliente.php'>Ver Productos</a></li>
@@ -21,7 +30,6 @@
         <h1>Crear un nuevo Pedido</h1>
         <form action = addCesta.php method="GET">
             <?php
-            session_start();
             $poblacionText="";
             $direccionText="";
             if(isset($_SESSION['pedidoEnCreacion'])){
@@ -98,6 +106,7 @@
                 echo "</tr>";
             }
             echo '</table>';
+        }
         }
         ?>
     </body>

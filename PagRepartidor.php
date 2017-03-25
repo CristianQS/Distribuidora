@@ -11,6 +11,15 @@
             <h1>Distribuidoras Refresh</h1>
             <img src="imagenes/truck.png" alt="camión"/>
         </header>
+        <?php
+                session_start();
+        include_once './lib.php';
+        $user=User::userType();
+        if($user != 3){
+            echo "Permiso Denegado";
+            User::securityUser($user);
+        }else{
+        ?>
         <nav id="navegador">
             <ul>
                 <li><a href = 'PagRepartidor.php' class="active">Pedidos no asignados</a></li>
@@ -70,6 +79,7 @@
                 echo "</tr>";
             }
             echo '</table>';
+        }
         }
         ?>
     </body>

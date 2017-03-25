@@ -16,13 +16,7 @@
         $user=User::userType();
         if($user != 1){
             echo "Permiso Denegado";
-            if($user == 2){
-                echo"<a href=\"PaginaCliente.php\">Volver a pagina de inicio</a>";
-            }else{
-                echo"<a href=\"PagRepartidor.php\">Volver a pagina de inicio</a>";
-            }
-            
-           
+            User::securityUser($user);
         } else{
             ?>
         <nav id="navegador">

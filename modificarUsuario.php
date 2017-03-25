@@ -27,7 +27,16 @@ echo "<!DOCTYPE html>
         <header id=\"cabezera\">
             <h1>Distribuidoras Refresh</h1>
             <img src=\"imagenes/truck.png\" alt=\"camión\"/>
-        </header>
+        </header>";
+        session_start();
+        include_once './lib.php';
+        $user=User::userType();
+        if($user != 1){
+            echo "Permiso Denegado";
+            User::securityUser($user);
+        } else{
+            
+        echo "
         <nav id=\"navegador\">
             <ul>
                 <li><a href = 'PagAdmin.php'>Ver Usuarios</a></li>
@@ -52,7 +61,8 @@ echo "<!DOCTYPE html>
         </form>
         <form action=\"PagAdmin.php\">
             <input type='submit' value = 'Volver' name = 'volver' id = 'volver'><br>
-        </form>" ;       
+        </form>" ;
+        }
         ?>
         </section>
     </body>

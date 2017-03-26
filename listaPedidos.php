@@ -78,7 +78,7 @@
                     }
                     $pos+=1;
                 }
-                echo "<td><form action='verDetalles.php' method='get'><input type='submit' value = 'Repartir' name = 'Repartir'><input type='hidden' name = 'detalles' value = '$aux'></form></td> ";
+                echo "<td><form action='verDetalles.php' method='get'><input type='submit' value = 'Ver Detalles' name = 'ver'><input type='hidden' name = 'detalles' value = '$aux'></form></td> ";
                 echo "</tr>";
             }
             echo '</table>';

@@ -41,7 +41,7 @@ if($_GET['Población'] !=NULL && $_GET['Dirección']!=NULL && $_GET['cantidad']!
     
     $aux = $stock-$_GET['cantidad'];
     
-    $sql1 = "UPDATE bebidas SET stock= ? WHERE marca=?";
+    $sql1 = "UPDATE bebidas SET stock= ? WHERE id=?";
     $res1=$db-> prepare($sql1);
     $res1->execute(array($aux,$_GET['Marca'] ));
 }

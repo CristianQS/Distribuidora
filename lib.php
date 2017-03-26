@@ -301,7 +301,7 @@ class Bebida{
     public static function detallesBebida($marca){
         $db = new PDO("sqlite:./datos.db");
         $db->exec('PRAGMA foreign_keys = ON;'); 
-        $sql = "SELECT * from bebidas WHERE marca = ?; ";
+        $sql = "SELECT * from bebidas WHERE id = ?; ";
         $inst=$db->prepare($sql);
         $inst->execute(array($marca));
         $inst->setFetchMode(PDO::FETCH_NAMED);

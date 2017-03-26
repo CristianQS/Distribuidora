@@ -46,13 +46,13 @@
             ?>
             Marca
             <select name="Marca">
-                <option value ="Agua artificial" selected>Agua Artificial   PVP: 1,05€</option>
-                <option value="Poca Cola">Poca Cola   PVP: 1,85€</option>
-                <option value="Falta Naranja">Falta Naranja   PVP: 1,75€</option>
-                <option value="Six Up">Six Up   PVP: 1.60€</option>
-                <option value="Cerveza Subtropical">Cerveza Subtropical   PVP: 1,90€</option>
-                <option value="Vino Pinto">Vino Pinto   PVP: 5,35€</option>
-                <option value="Vino Azul">Vino Azul   PVP: 10,75€</option> 
+                <option value ="1" selected>Agua Artificial   PVP: 1,05€</option>
+                <option value="2">Poca Cola   PVP: 1,85€</option>
+                <option value="3">Falta Naranja   PVP: 1,75€</option>
+                <option value="4">Six Up   PVP: 1.60€</option>
+                <option value="5">Cerveza Subtropical   PVP: 1,90€</option>
+                <option value="6">Vino Pinto   PVP: 5,35€</option>
+                <option value="7">Vino Azul   PVP: 10,75€</option> 
             </select><br>
             <label>Unidades </label><input type = 'text' name= 'cantidad' id = 'cantidad' size ='20'> <br>
             <input type = 'submit' value = 'Añadir a Cesta' name= 'Boton' id = 'Boton'>

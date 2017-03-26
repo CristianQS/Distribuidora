@@ -37,8 +37,12 @@ class View{
                 if($first){
                     echo "<table><tr>"; //Esto va a la pagina de html,
                     //Sacamos los campos
+                    $pos = 0;
                     foreach($game as $field=>$value){ //Sacamos clave=> valor
-                        echo "<th>$field</th>";
+                        if($pos != 0 ){
+                            echo "<th>$field</th>";
+                        }
+                        $pos+=1;
                     }
                     $first = false;
                     echo "</tr>";
@@ -46,7 +50,10 @@ class View{
                 echo "<tr>";
                 $pos = 0;
                 foreach($game as $value){
-                    echo "<th>$value</th>";
+                    if($pos != 0 ){
+                         echo "<td>$value</td>";
+                    }
+                    $pos+=1;
                 }
                 
                 echo "</tr>";
@@ -70,8 +77,12 @@ class View{
                 if($first){
                     echo "<table><tr>"; //Esto va a la pagina de html,
                     //Sacamos los campos
+                    $pos = 0;
                     foreach($game as $field=>$value){ //Sacamos clave=> valor
-                        echo "<th>$field</th>";
+                        if($pos == 1 || $pos == 3 || $pos == 4 || $pos == 5 || $pos == 6){
+                         echo "<th>$field</th>";
+                        }
+                        $pos+=1;
                     }
                     echo "<th>Borrar</th>";
                     echo "<th>Modificar</th>";
@@ -81,7 +92,10 @@ class View{
                 echo "<tr>";
                 $pos = 0;
                 foreach($game as $value){
-                    echo "<th>$value</th>";
+                     if($pos == 1 || $pos == 3 || $pos == 4 || $pos == 5 || $pos == 6){
+                         echo "<td>$value</td>";
+                     }
+                    
                     if($pos == 1){
                         $aux = $value;
                     }

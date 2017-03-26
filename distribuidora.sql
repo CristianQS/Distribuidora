@@ -15,7 +15,7 @@ PRAGMA foreign_keys = ON;
 DROP TABLE IF EXISTS [usuarios];
 DROP TABLE IF EXISTS [bebidas];
 DROP TABLE IF EXISTS [pedidos];
-DROP TABLE IF EXISTS [lineaspedidos];
+DROP TABLE IF EXISTS [lineaspedido];
 
 /*******************************************************************************
    Create Tables

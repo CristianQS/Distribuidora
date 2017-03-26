@@ -44,8 +44,12 @@
                 if($first){
                     echo "<table><tr>"; //Esto va a la pagina de html,
                     //Sacamos los campos
+                    $pos=0;
                     foreach($game as $field=>$value){ //Sacamos clave=> valor
-                        echo "<th>$field</th>";
+                        if($pos != 0 ){
+                         echo "<th>$field</th>";
+                        }                        
+                        $pos+=1;
                     }
                     echo "<th>Estado</th>";
                     $first = false;
@@ -65,12 +69,14 @@
                             echo "<td>$fecha</td>";
                         }
                     }else{
-                        echo "<td>$value</td>";
+                        if($pos != 0 ){
+                         echo "<td>$value</td>";
+                        }
                     }
                     $pos+=1;
                 }
                 $status = Pedido::estadoPedido($id);
-                echo "<th>$status</th>";
+                echo "<td>$status</td>";
                 echo "</tr>";
             }
             echo '</table>';

@@ -57,11 +57,14 @@
             <label>Unidades </label><input type = 'text' name= 'cantidad' id = 'cantidad' size ='20'> <br>
             <input type = 'submit' value = 'Añadir a Cesta' name= 'Boton' id = 'Boton'>
         </form>
-        <form action="PagAdmin.php">
+        <form action="PaginaCliente.php">
             <input type='submit' value = 'Volver' name = 'volver' id = 'volver'><br>
         </form>
         <form action="realizarPedido.php">
             <input type='submit' value="Realizar Pedido" name ='Finalizar' id="Finalizar" ><br>
+        </form>
+        <form action="deletePedido.php">
+            <input type='submit' value="Eliminar Pedido" name ='Eliminar' id="Eliminar" ><br>
         </form>
         <?php
         include_once './lib.php';
@@ -75,8 +78,10 @@
         $res=0;
         if(isset($_SESSION['idpedido'])){
             $idp=$_SESSION['idpedido'];
-        $res=$db->prepare("SELECT * FROM lineaspedido WHERE idpedido=? ;");
-        $res->execute(array($idp)); 
+            $sql="SELECT lineaspedido.id, lineaspedido.idpedido, bebidas.marca,lineaspedido.unidades,lineaspedido.PVP FROM lineaspedido INNER JOIN bebidas
+                    ON lineaspedido.idbebida=bebidas.id WHERE idpedido=? ;";
+            $res=$db->prepare($sql);
+            $res->execute(array($idp)); 
         }
         if($res){
             $res->setFetchMode(PDO::FETCH_NAMED);
@@ -86,8 +91,12 @@
                 if($first){
                     echo "<table><tr>"; 
                     
-                    foreach($game as $field=>$value){ 
-                        echo "<th>$field</th>";
+                    $pos=0;
+                    foreach($game as $field=>$value){ //Sacamos clave=> valor
+                        if($pos != 0 ){
+                         echo "<th>$field</th>";
+                        }                        
+                        $pos+=1;
                     }
                     $first = false;
                     echo '<th>Borrar</th>';
@@ -96,13 +105,14 @@
                 echo "<tr>";
                 $pos = 0;
                 foreach($game as $value){
-                    echo "<th>$value</th>";
                     if($pos == 0){
                         $aux = $value;
+                    }else {
+                        echo "<td>$value</td>";
                     }
                     $pos+=1;
                 }
-                echo "<td><form action='deletePedido.php' method='get'><input type='submit' value = 'Borrar' name = 'borrar'><input type='hidden' name = 'linea' value = '$aux'></form></td> ";
+                echo "<td><form action='deleteLinea.php' method='get'><input type='submit' value = 'Borrar' name = 'borrar'><input type='hidden' name = 'linea' value = '$aux'></form></td> ";
                 echo "</tr>";
             }
             echo '</table>';

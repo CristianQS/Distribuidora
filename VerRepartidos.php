@@ -35,7 +35,11 @@
         $db->exec('PRAGMA foreign_keys = ON;');
         $array = User::getLoggedUser();
         $us = $array['id'];
-        $res=$db->prepare("SELECT * FROM pedidos WHERE horaentrega = 0 and horareparto > 0 ;");
+        $sql="SELECT pedidos.id, usuarios.nombre,pedidos.poblacionentrega,pedidos.direccionentrega,
+            pedidos.horacreacion, pedidos.idrepartidor, pedidos.horaasignacion, pedidos.horareparto, pedidos.horaentrega,
+            pedidos.PVP FROM pedidos INNER JOIN usuarios
+              ON pedidos.idcliente=usuarios.id WHERE horaentrega = 0 and horareparto > 0 ;";
+        $res=$db->prepare($sql);
         $res->execute(); //almacena la respuesta
         //Ejemplo de lectura de tabla
         if($res){
@@ -46,8 +50,12 @@
                 if($first){
                     echo "<table><tr>"; //Esto va a la pagina de html,
                     //Sacamos los campos
+                    $pos=0;
                     foreach($game as $field=>$value){ //Sacamos clave=> valor
-                        echo "<th>$field</th>";
+                        if($pos != 0 && $pos != 5 ){
+                         echo "<th>$field</th>";
+                        }                        
+                        $pos+=1;
                     }
                     echo "<th>Entregar Pedido</th>";
                     $first = false;
@@ -69,7 +77,9 @@
                             echo "<td>$fecha</td>";
                         }
                     }else{
-                        echo "<td>$value</td>";
+                        if($pos != 0 && $pos != 5 ){
+                            echo "<td>$value</td>";
+                        }
                     }
                     $pos+=1;
                 }

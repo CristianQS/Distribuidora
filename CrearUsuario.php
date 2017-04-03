@@ -32,7 +32,7 @@
         </nav>
         <section>
             <h2>Crear Usuario</h2><br>
-        <form>
+            <form onsubmit="return compruebaUsuario()">
             <label>Nombre de Usuario:</label><input type='text' name = 'nombreUser' id = 'nombreUser' size = 20><br>
             <label>Nombre Completo:</label><input type='text' name = 'nombreCom' id = 'nombreCom' size = 20><br>
             <label>Contraseña:</label><input type='password' name = 'password' id = 'password' size = 20><br>
@@ -64,11 +64,10 @@
                         $res=$db-> prepare($sql);
                         $res->execute(array($_GET['nombreUser'],md5($_GET['password']),$_GET['nombreCom'],$tipo, $_GET['poblacion'], $_GET['direccion']));
                     }
-                   // header('Location: PagAdmin.php');
+                   header('Location: PagAdmin.php');
                 }else{
                     echo "Este usuario ya existe";
-                }
-                
+                }            
             }
         }   
         ?>

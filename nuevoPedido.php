@@ -4,6 +4,8 @@
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="estilos.css">
         <script src="scripts.js"></script>
+        <script src="http://code.jquery.com/jquery-1.11.2.js"></script>
+        <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     </head>
     <body>
         <header id="cabezera">
@@ -28,7 +30,7 @@
             </ul>
         </nav>
         <h1>Crear un nuevo Pedido</h1>
-        <form action = addCesta.php method="GET">
+        <form action="addCesta.php" method="GET">
             <?php
             $poblacionText="";
             $direccionText="";
@@ -66,6 +68,7 @@
         <form action="deletePedido.php">
             <input type='submit' value="Eliminar Pedido" name ='Eliminar' id="Eliminar" ><br>
         </form>
+        <div id="resultado" >
         <?php
         include_once './lib.php';
         if(isset($_SESSION['error'])){
@@ -83,6 +86,7 @@
             $res=$db->prepare($sql);
             $res->execute(array($idp)); 
         }
+        
         if($res){
             $res->setFetchMode(PDO::FETCH_NAMED);
             $first=true;
@@ -112,13 +116,14 @@
                     }
                     $pos+=1;
                 }
-                echo "<td><form action='deleteLinea.php' method='get'><input type='submit' value = 'Borrar' name = 'borrar'><input type='hidden' name = 'linea' value = '$aux'></form></td> ";
+                echo "<td><form method='get'><button onclick=\"deleteLinea($aux)\">Borrar</button></form></td> ";
                 echo "</tr>";
             }
             echo '</table>';
         }
         }
         ?>
+            </div>
     </body>
     
 </html>

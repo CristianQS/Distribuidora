@@ -49,7 +49,7 @@ echo "<!DOCTYPE html>
         </nav>
         <section>
         <h2>Modificar Usuario</h2>
-        <form action=\"RealizaModificacion.php\" method = \"get\">
+        <form action=\"RealizaModificacion.php\" onsubmit=\"return compruebaUsuario()\" method = \"get\">
             <label>Usuario: $usuario</label><input type='hidden' name = 'nombreUser' value='$usuario' id = 'nombreUser' size = 20><br>
             <label>Nombre Completo:</label><input type='text' name = 'nombreCom' value='$nomC' id = 'nombreCom' size = 20><br>
             Elija un tipo:<br>";

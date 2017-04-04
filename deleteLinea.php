@@ -36,18 +36,21 @@ try{
     $res1->execute(array($_SESSION['idpedido']));
     $res1->setFetchMode(PDO::FETCH_NAMED);
     $array = $res1->fetchAll();
-if ( count($array) == 0 ){
-    $sql = "DELETE FROM pedidos WHERE id=?"; //funciona
-    $res=$db->prepare($sql);//funciona
-    $res->execute(array($_SESSION['idpedido']));//funciona
-    unset($_SESSION['idpedido']);
-    unset($_SESSION['pedidoEnCreacion']);
-    unset($_SESSION['dirección']);
-    unset($_SESSION['población']);
-    $_SESSION['error']="Se ha eliminado el pedido";
-}
+    if ( count($array) == 0 ){
+        $sql = "DELETE FROM pedidos WHERE id=?"; //funciona
+        $res=$db->prepare($sql);//funciona
+        $res->execute(array($_SESSION['idpedido']));//funciona
+        unset($_SESSION['idpedido']);
+        unset($_SESSION['pedidoEnCreacion']);
+        unset($_SESSION['dirección']);
+        unset($_SESSION['población']);
+        $_SESSION['error']="Se ha eliminado el pedido";
+    }
+    $res->deleted = true;
+    $res->message = 'Elemento borrado';
 }  catch (Exception $e){
-    $res->message="Se ha producido una excepción en el servidor: ".$e->getMessage();    
+    $res->message="Se ha producido una excepción en el servidor: ".$e->getMessage(); 
+    $res->deleted = false;
 }
 
 

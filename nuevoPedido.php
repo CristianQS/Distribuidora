@@ -30,7 +30,7 @@
             </ul>
         </nav>
         <h1>Crear un nuevo Pedido</h1>
-        <form action="addCesta.php" method="GET">
+        <form action="crearPedido.php" method="GET">
             <?php
             $poblacionText="";
             $direccionText="";
@@ -45,9 +45,11 @@
             <label>Población</label><input type = 'text' name= 'Población' id = 'Población' value='$poblacionText' size ='20'><br>
             <label>Dirección</label><input type = 'text' name= 'Dirección' id = 'Dirección' value='$direccionText' size ='20'><br>";
             }
+            echo "<input type=\"submit\" value=\"Crear Pedido\" name=\"pedido\" id=\"pedido\"><br></form>";
             ?>
+            <form method="GET">
             Marca
-            <select name="Marca">
+            <select name="Marca" id="Marca">
                 <option value ="1" selected>Agua Artificial   PVP: 1,05€</option>
                 <option value="2">Poca Cola   PVP: 1,85€</option>
                 <option value="3">Falta Naranja   PVP: 1,75€</option>
@@ -57,7 +59,7 @@
                 <option value="7">Vino Azul   PVP: 10,75€</option> 
             </select><br>
             <label>Unidades </label><input type = 'text' name= 'cantidad' id = 'cantidad' size ='20'> <br>
-            <input type = 'submit' value = 'Añadir a Cesta' name= 'Boton' id = 'Boton'>
+            <button onclick="addLinea()">Añadir a cesta</button>
         </form>
         <form action="PaginaCliente.php">
             <input type='submit' value = 'Volver' name = 'volver' id = 'volver'><br>

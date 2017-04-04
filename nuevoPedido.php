@@ -42,12 +42,12 @@
             <label>Dirección</label><input type = 'text' name= 'Dirección' id = 'Dirección' value='$direccionText' readonly='readonly' size ='20'><br>";
             } else {
             echo " 
-            <label>Población</label><input type = 'text' name= 'Población' id = 'Población' value='$poblacionText' size ='20'><br>
-            <label>Dirección</label><input type = 'text' name= 'Dirección' id = 'Dirección' value='$direccionText' size ='20'><br>";
+            <label>Población</label><input type = 'text' name= 'Población' id = 'Población' value='$poblacionText' size ='20' required><br>
+            <label>Dirección</label><input type = 'text' name= 'Dirección' id = 'Dirección' value='$direccionText' size ='20' required><br>";
             }
             echo "<input type=\"submit\" value=\"Crear Pedido\" name=\"pedido\" id=\"pedido\"><br></form>";
             ?>
-            <form method="GET">
+            <form method="POST">
             Marca
             <select name="Marca" id="Marca">
                 <option value ="1" selected>Agua Artificial   PVP: 1,05€</option>
@@ -56,11 +56,12 @@
                 <option value="4">Six Up   PVP: 1.60€</option>
                 <option value="5">Cerveza Subtropical   PVP: 1,90€</option>
                 <option value="6">Vino Pinto   PVP: 5,35€</option>
-                <option value="7">Vino Azul   PVP: 10,75€</option> 
+                <option value="7">Vino Azul   PVP: 10,75€</option>
             </select><br>
             <label>Unidades </label><input type = 'text' name= 'cantidad' id = 'cantidad' size ='20'> <br>
-            <button onclick="addLinea()">Añadir a cesta</button>
+            
         </form>
+        <button onclick="addLinea()">Añadir a cesta</button>
         <form action="PaginaCliente.php">
             <input type='submit' value = 'Volver' name = 'volver' id = 'volver'><br>
         </form>
@@ -70,7 +71,22 @@
         <form action="deletePedido.php">
             <input type='submit' value="Eliminar Pedido" name ='Eliminar' id="Eliminar" ><br>
         </form>
-        <div id="resultado" >
+
+            
+            
+        <div id="lineas" style="display: none">
+            <h2>Elementos que estas añadiendo</h2>
+            <table id="tablaLineas">
+                <tr>
+                    <th>marca</th>
+                    <th>unidades</th>
+                    <th>PVP</th>
+                    <th>Borrar</th>
+                </tr>
+                
+            </table><br>
+            
+        </div>
         <?php
         include_once './lib.php';
         if(isset($_SESSION['error'])){
@@ -92,7 +108,8 @@
         if($res){
             $res->setFetchMode(PDO::FETCH_NAMED);
             $first=true;
-            
+            echo '<div id=\"tabla\">';
+            echo "<h2>Elementos previamente añadidos</h2>";
             foreach($res as $game){
                 if($first){
                     echo "<table><tr>"; 
@@ -108,24 +125,27 @@
                     echo '<th>Borrar</th>';
                     echo "</tr>";
                 }
-                echo "<tr>";
+                
                 $pos = 0;
+                
                 foreach($game as $value){
                     if($pos == 0){
                         $aux = $value;
+                        echo "<tr id=\"fila$aux\">";
                     }else {
                         echo "<td>$value</td>";
                     }
                     $pos+=1;
                 }
-                echo "<td><form method='get'><button onclick=\"deleteLinea($aux)\">Borrar</button></form></td> ";
+                echo "<td><button onclick=\"deleteLinea($aux)\">Borrar</button></td> ";
                 echo "</tr>";
             }
             echo '</table>';
+            echo '</div>';
         }
         }
         ?>
-            </div>
+            
     </body>
     
 </html>
